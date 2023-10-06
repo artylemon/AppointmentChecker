@@ -11,7 +11,9 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 def bookings_available():
     booking_site_url: str = (
-        "https://terminvereinbarung.leipzig.de/m/leipzig-ba/extern/calendar/session_expired?uid=b76cab25-49bd-44e3-950d-aab715881ea7&wsid=db409d9b-ed62-47a9-94b7-9fcec525a6ac&lang=de")
+        "https://terminvereinbarung.leipzig.de/m/leipzig-ba/extern/calendar/session_expired?uid=b76cab25-49bd-44e3"
+        "-950d-aab715881ea7&wsid=db409d9b-ed62-47a9-94b7-9fcec525a6ac&lang=de"
+    )
     driver = webdriver.Chrome()
     driver.get(booking_site_url)
     driver.implicitly_wait(10)
@@ -76,11 +78,8 @@ def send_welcome(message):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    BOT_TOKEN = '6510977502:AAFDflfDU19A8W6s8rpA5HPXsSAFR74e2-8'
-    user_id = '425609411'
+    user_id = ''
     # bot.infinity_polling()
     # bot = telebot.TeleBot(BOT_TOKEN)
-    if  bookings_available():
-        bot.send_message(chat_id=user_id, text='no bookings available')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    if bookings_available():
+        bot.send_message(chat_id=user_id, text='Some booking slots available!')
